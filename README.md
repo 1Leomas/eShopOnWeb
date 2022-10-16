@@ -65,7 +65,7 @@ You can also run the samples in Docker (see below).
 
     ```
 
-1. Ensure your connection strings in `appsettings.json` point to a local SQL Server instance.
+1. Ensure your dotnet efrver instance.
 1. Ensure the tool EF was already installed. You can find some help [here](https://docs.microsoft.com/ef/core/miscellaneous/cli/dotnet)
 
     ```

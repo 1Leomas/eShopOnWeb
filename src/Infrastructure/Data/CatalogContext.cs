@@ -24,4 +24,7 @@ public class CatalogContext : DbContext
         base.OnModelCreating(builder);
         builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
     }
+
+    /*protected override void OnConfiguring(DbContextOptionsBuilder options)
+        => options.UseSqlServer("Data Source=DESKTOP-SVBCHMS;Integrated Security=true;Initial Catalog=Microsoft.eShopOnWeb.CatalogDb;");*/
 }
