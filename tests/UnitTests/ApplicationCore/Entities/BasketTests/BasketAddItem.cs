@@ -53,7 +53,7 @@ public class BasketAddItem
         basket.AddItem(_testCatalogItemId, _testUnitPrice);
 
         var firstItem = basket.Items.Single();
-        Assert.Equal(1, firstItem.Quantity);
+        Assert.Equal(2, firstItem.Quantity);
     }
 
     [Fact]
