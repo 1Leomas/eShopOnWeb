@@ -15,7 +15,7 @@ stages {
 	stage('Test') {  
 		steps { 
 			bat 'dotnet test %WORKSPACE%\\tests\\UnitTests\\UnitTests.csproj --logger "junit"'
-			junit allowEmptyResults: true, testResults: '**\\TestResults\\**.xml'
+			junit skipMarkingBuildUnstable: true, allowEmptyResults: true, testResults: '**\\TestResults\\**.xml'
 		}
 	}
 	
