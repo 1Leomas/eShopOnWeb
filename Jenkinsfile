@@ -1,10 +1,23 @@
+def CLEAN_WORKSPACE = false
+def TESTING_FRONTEND = false
 pipeline {  
 	agent any  
 	environment {  
 		dotnet = 'C:\\Program Files\\dotnet\\dotnet.exe'  
+		ON_SUCCESS_SEND_EMAIL = true
+		ON_FAILURE_SEND_EMAIL = true
 	}  
 	
 stages {  
+
+	stage('Clean workspace') {
+		when {
+			expression { CLEAN_WORKSPACE }
+		}
+		steps {
+			deleteDir()
+		}
+	}
 
 	stage('Build') {  
 		steps {  
@@ -15,8 +28,18 @@ stages {
 	stage('Test') {  
 		steps { 
 			bat 'dotnet test %WORKSPACE%\\tests\\UnitTests\\UnitTests.csproj --logger "junit"'
-			junit skipMarkingBuildUnstable: true, allowEmptyResults: true, testResults: '**\\TestResults\\**.xml'
+			junit allowEmptyResults: true, testResults: '**\\TestResults\\**.xml'
 		}
+	}
+	
+	stage('Testing frontend') {
+		when {
+			expression { TESTING_FRONTEND }
+		}
+		steps {
+			echo "TESTING_FRONTEND"
+		}
+		
 	}
 	
 	stage("Release"){
