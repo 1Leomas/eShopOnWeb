@@ -5,8 +5,10 @@ pipeline {
 		ON_SUCCESS_SEND_EMAIL = "true"
 		ON_FAILURE_SEND_EMAIL = "true"
 	}
+	//triggers {
+        //cron('H */2 * * *')
+    //}
 
-	
 stages {  
 	stage('Build') {  
 		steps {  
@@ -14,7 +16,7 @@ stages {
 		} 
 	}
 
-	stage('Test') {
+	stage('Testing backend') {
 		when {
 			expression {
 				env.TESTING_BACKEND == "true"
@@ -69,5 +71,4 @@ stages {
 					to: "samuil.rutcovschi@gmail.com";  
 		}  
     }  
-
 }
